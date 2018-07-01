@@ -1,4 +1,10 @@
 class percona {
+  
+  # Generating the repo file for percona server
+  file { '/etc/apt/sources.list.d/percona-release.list': 
+      ensure    => 'file',
+      content => epp('/etc/puppetlabs/code/environments/production/files/percona-release.list.epp'),
+  }
 
   package { 'percona-release':
       ensure => '0.1-6.xenial',
@@ -18,5 +24,4 @@ class percona {
   package { 'percona-xtrabackup':
       ensure => '2.3.10-1.xenial',
   }
-
 }
